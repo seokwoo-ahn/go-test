@@ -2,16 +2,29 @@ package channel
 
 import "fmt"
 
-func Select() {
-	ch1 := make(chan int, 2)
-	ch2 := make(chan int)
+type Channels struct {
+	input chan int
+	term  chan int
+}
 
+func (c *Channels) Select1() {
 	select {
-	case ch1 <- 1:
+	case c.input <- 1:
 		fmt.Println("ch1 inserted")
-	case <-ch2:
+	case <-c.term:
 		fmt.Println("dead")
 	}
+}
 
-	fmt.Println(<-ch1)
+func (c *Channels) Select2() {
+	select {
+	case <-c.term:
+		fmt.Println("dead")
+	case c.input <- 1:
+		fmt.Println("ch1 inserted")
+	}
+}
+
+func (c *Channels) Terminate() {
+	close(c.term)
 }
