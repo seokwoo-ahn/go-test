@@ -1,0 +1,8 @@
+{
+    "port": 443,
+    "url": "seok-study.tistory.com",
+    "database": {
+        "name": "db_test",
+        "collection": "collection_test"
+    }
+}
