@@ -13,7 +13,7 @@ func RabinKarp(text, pattern string) int {
 		}
 	}
 
-	for i := 0; i < len(text)-len(pattern); i++ {
+	for i := 0; i < len(text)-len(pattern)+1; i++ {
 		if i > 0 {
 			textHash = (textHash-int(text[i-1])*pow)*powPrime + int(text[i+len(pattern)-1])
 		}

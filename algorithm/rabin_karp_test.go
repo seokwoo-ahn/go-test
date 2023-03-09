@@ -7,7 +7,7 @@ import (
 
 func TestRabinKarp(t *testing.T) {
 	text := "abcabcbabaababc"
-	pattern := "cba"
+	pattern := "babc"
 
 	fmt.Println(RabinKarp(text, pattern))
 }
