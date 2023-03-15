@@ -7,22 +7,30 @@ import (
 
 func TestBellmanFord(t *testing.T) {
 	edge := [][]float64{
-		{-1, 1, -1, -1},
+		{-1, 1, 1.3, 0.8},
 		{1.2, -1, 0.9, 1.2},
-		{-1, -1, -1, -1},
-		{-1, -1, -1, -1},
+		{0.5, 3, -1, 1.3},
+		{1.4, 2.1, 1.3, -1},
 	}
+
 	from := 0
 	to := 3
 
-	rate, path, err := BellmanFord(edge, from, to)
-	if err != nil {
-		fmt.Println("error:", err)
-		fmt.Println(path)
-		return
+	rate1, path1, err1 := BellmanFordWithNegativeCycle(edge, from, to)
+	if err1 != nil {
+		fmt.Println("error:", err1)
 	}
-	fmt.Println(rate)
-	fmt.Println(path)
+	fmt.Println("path with negative cycle:", path1)
+	fmt.Println("maximum rate with negative cycle:", rate1)
+
+	fmt.Println()
+
+	rate2, path2, err2 := BellmanFordWithoutNegativeCycle(edge, from, to)
+	if err2 != nil {
+		fmt.Println("error:", err2)
+	}
+	fmt.Println("path without negative cycle:", path2)
+	fmt.Println("maximum rate without negative cycle:", rate2)
 }
 
 // loop를 돌았을때 swap pool의 ratio가 1이 될때까지만 돌면 돈이 계속 증가함
