@@ -96,11 +96,9 @@ func printSeatingArrangement(seating map[string][2]int) {
 		for c := 0; c < tableSize; c++ {
 			if table[r][c] == "" {
 				table[r][c] = "empty"
-				for c2 := c + 1; c2 < tableSize; c2++ {
-					if table[r][c2] != "" {
-						table[r][c], table[r][c2] = table[r][c2], table[r][c]
-						break
-					}
+				if table[r][tableSize] != "" {
+					table[r][c], table[r][tableSize] = table[r][tableSize], table[r][c]
+					break
 				}
 			}
 		}
